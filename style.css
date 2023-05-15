@@ -1,0 +1,93 @@
+div {
+    display: flex;
+}
+
+/*Головний дів*/
+
+.cashback {
+    width: 450px;
+    height: 470px;
+    background: #F5F5F5;
+    border-radius: 50px;
+    justify-content: center;
+    flex-direction: column;
+}
+/*Баланс*/
+
+.balance--div {
+    justify-content: center;
+    align-items: center;
+    margin: 20px 30px;
+    align-self: center;
+    width: 90%;
+    border-bottom: 2px solid #968A87;
+}
+
+.current--balance {
+    display: flex;
+    font-family: 'Montserrat', serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    color: #000000;
+
+    padding-bottom: 20px;
+}
+
+/*Бокси з інфою*/
+
+.box {
+    height: 25%;
+    background: #DBDBDB;
+    border-radius: 25px;
+    margin: 0 20px 20px 20px;
+    width: 90%;
+}
+
+.box--image {
+    width: 25%;
+    justify-content: center;
+}
+
+.rectangle {
+    width: 30px;
+    height: 30px;
+    align-self: center;
+    margin: 0 20%;
+}
+
+.circle {
+    width: 20px;
+    height: 20px;
+    align-self: flex-start;
+    margin-top: 10px;
+}
+
+.box--text {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.box--text h3 {
+    margin: 8px 0 0;
+    font-family: 'Montserrat', serif;
+    font-weight: 700;
+    font-size: 22px;
+     color: #000000;
+}
+
+.box--text p {
+    margin: 0;
+    font-family: 'Montserrat', serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #000000;
+
+}
+
+.box--text span {
+    font-family: 'Montserrat', serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #968A87;
+}
