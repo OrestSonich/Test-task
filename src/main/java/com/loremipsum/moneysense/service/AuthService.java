@@ -33,7 +33,6 @@ public class AuthService {
         if (repository.existsUserEntityByEmail(request.getEmail())){
             throw new EmailAreBusyException("This email are busy");
         }
-
         var user = UserEntity.builder()
             .firstName(request.getFirstName())
             .lastName(request.getLastName())
