@@ -4,6 +4,7 @@ package com.loremipsum.moneysense.service;
 import com.loremipsum.moneysense.controllers.auth.AuthRequest;
 import com.loremipsum.moneysense.controllers.auth.AuthenticationResponse;
 import com.loremipsum.moneysense.controllers.auth.RegisterRequest;
+import com.loremipsum.moneysense.controllers.auth.exception.EmailAreBusyException;
 import com.loremipsum.moneysense.entity.UserEntity;
 import com.loremipsum.moneysense.entity.UserRole;
 import com.loremipsum.moneysense.repository.UserRepository;
@@ -14,13 +15,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-/**
- *
- *  This class represent table USERS
- * @author Orest Sonich
- * @version 1.0
- *
- */
+
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -31,6 +26,11 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+
+        if (repository.existsUserEntityByEmail(request.getEmail())){
+            throw new EmailAreBusyException("This email are busy");
+        }
+
     var user = UserEntity.builder()
             .firstName(request.getFirstName())
             .lastName(request.getLastName())
