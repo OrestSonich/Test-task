@@ -1,0 +1,56 @@
+.navigate {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background: #DBDBDB;
+  height: 100px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.navigate .userLogoWrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.navigate .userLogoWrapper a {
+  text-decoration: none;
+}
+.navigate .userLogoWrapper__logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #008080;
+  border-radius: 100%;
+}
+.navigate .userLogoWrapper__logo h4 {
+  font-size: 46px;
+  font-weight: 400;
+  color: #DBDBDB;
+}
+.navigate .userLogoWrapper__info {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.navigate .userLogoWrapper__info h4 {
+  font-size: 24px;
+  font-weight: 600;
+}
+.navigate .userLogoWrapper__info button {
+  margin-top: 10px;
+}
+
+@media (max-width: 450px) {
+  .navigate {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=navigatePanel.css.map */
