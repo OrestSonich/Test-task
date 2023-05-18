@@ -52,6 +52,8 @@ public class UserEntity implements UserDetails {
     @Enumerated(value = EnumType.STRING)
     private UserRole role;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<IncomeEntity> incomes;
     @ToString.Include(name = "password")
     private String maskPassword(){
         return "*********";
