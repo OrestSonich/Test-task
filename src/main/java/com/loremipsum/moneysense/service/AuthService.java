@@ -15,6 +15,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,12 +34,13 @@ public class AuthService {
             throw new EmailAreBusyException("This email are busy");
         }
 
-    var user = UserEntity.builder()
+        var user = UserEntity.builder()
             .firstName(request.getFirstName())
             .lastName(request.getLastName())
             .email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(UserRole.USER)
+            .createdAt(Date.valueOf(LocalDate.now()))
             .enabled(true)
             .build();
     repository.save(user);
