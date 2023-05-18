@@ -1,0 +1,15 @@
+#spring.datasource.username=postgres
+#spring.datasource.password=Jhtcn200516
+#spring.datasource.url=jdbc:postgresql://localhost:5432/moneysense
+#spring.datasource.driver-class-name=org.postgresql.Driver
+
+spring:
+  datasource:
+    username: 'postgres'
+    url: 'jdbc:postgresql://localhost:5432/moneysense'
+    password: 'Jhtcn200516'
+    driver-class-name: org.postgresql.Driver
+
+jwt:
+    secret: 2A472D4B6150645367556B58703273357638792F423F4528482B4D6251655468
+    expiration: 86400000
