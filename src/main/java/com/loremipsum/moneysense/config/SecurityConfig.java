@@ -12,13 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-/**
- *
- *  This class represent table USERS
- * @author Orest Sonich
- * @version 1.0
- *
- */
+
 
 @Configuration
 @EnableWebSecurity

@@ -11,13 +11,7 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
-*  This class represent table USERS
-* @author Orest Sonich
-* @version 1.0
- *
-*/
+
 
 @Data
 @NoArgsConstructor
