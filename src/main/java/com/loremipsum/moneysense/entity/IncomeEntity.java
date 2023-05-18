@@ -23,5 +23,4 @@ public class IncomeEntity {
     @JoinColumn(name = "user_id")
     private UserEntity owner;
 
-
 }

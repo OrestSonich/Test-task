@@ -22,7 +22,7 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String SECRET_KEY;
     @Value("${jwt.expiration}")
-    private int EXPIRATION;
+    private int expiration;
     public String exctractEmail(String jwt) {
         return extractClaim(jwt, Claims::getSubject);
     }
@@ -45,7 +45,7 @@ public class JwtService {
                     .setClaims(exctractClaims)
                     .setSubject(userDetails.getUsername())
                     .setIssuedAt(new Date(System.currentTimeMillis()))
-                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION))
+                    .setExpiration(new Date(System.currentTimeMillis() + expiration))
                     .signWith(getSisnInKey(), SignatureAlgorithm.HS256)
                     .compact();
 
