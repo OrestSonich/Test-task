@@ -20,6 +20,7 @@ public class DepositEntity {
     private double enteredCash;
     private double expectedCash;
     private Date openAt;
+    private Date updatedAt;
     private Date closed;
     private double rate;
     @ManyToOne

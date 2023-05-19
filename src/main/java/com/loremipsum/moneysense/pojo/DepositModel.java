@@ -11,6 +11,7 @@ public class DepositModel {
     private double enteredCash;
     private double expectedCash;
     private Date openAt;
+    private Date updatedAt;
     private Date closed;
     private double rate;
 
@@ -21,6 +22,7 @@ public class DepositModel {
         model.setExpectedCash(entity.getExpectedCash());
         model.setOpenAt(entity.getOpenAt());
         model.setClosed(entity.getClosed());
+        model.setUpdatedAt(entity.getUpdatedAt());
         model.setRate(entity.getRate());
         return model;
     }

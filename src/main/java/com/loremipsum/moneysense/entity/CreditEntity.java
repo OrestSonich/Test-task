@@ -22,6 +22,7 @@ public class CreditEntity {
     private double receivedCash;
     private double refundCash;
     private Date openAt;
+    private Date updatedAt;
     private Date closed;
     private double rate;
     @ManyToOne

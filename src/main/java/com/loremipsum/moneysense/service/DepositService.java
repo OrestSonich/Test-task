@@ -28,4 +28,19 @@ public class DepositService {
         depositRepository.save(entity);
         return DepositModel.toModel(entity);
     }
+
+    public void deleteDeposit(Long id) {
+        depositRepository.deleteById(id);
+    }
+
+    public DepositModel editDeposit(DepositEntity entity, Long id) {
+        DepositEntity findEntity = depositRepository.findById(id).orElseThrow();
+        if (entity.getEnteredCash() != 0)
+            findEntity.setEnteredCash(entity.getEnteredCash());
+        if (entity.getRate() != 0)
+            findEntity.setRate(entity.getRate());
+
+        findEntity.setUpdatedAt(Date.valueOf(LocalDate.now()));
+        return DepositModel.toModel(findEntity);
+    }
 }
