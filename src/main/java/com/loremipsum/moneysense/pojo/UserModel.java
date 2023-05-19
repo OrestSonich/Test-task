@@ -14,6 +14,7 @@ public class UserModel {
     private String email;
     private List<IncomesModel> incomes;
     private List<CostsModel> costs;
+    private List<DepositModel> deposits;
 
     public static UserModel toModel(UserEntity entity){
         UserModel model = new UserModel();
@@ -23,6 +24,7 @@ public class UserModel {
         model.setEmail(entity.getEmail());
         model.setIncomes(entity.getIncomes().stream().map(IncomesModel::toModel).collect(Collectors.toList()));
         model.setCosts(entity.getCosts().stream().map(CostsModel::toModel).collect(Collectors.toList()));
+        model.setDeposits(entity.getDeposits().stream().map(DepositModel::toModel).collect(Collectors.toList()));
         return model;
     }
 }

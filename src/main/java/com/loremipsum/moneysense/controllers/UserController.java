@@ -19,8 +19,8 @@ public class UserController {
     @Autowired
     private UserService service;
     @GetMapping("/user/")
-    public ResponseEntity getUser(@RequestParam Long id){
-         UserModel userModel = service.getOne((long) id);
+    public ResponseEntity getUser(@RequestParam String email){
+        UserModel userModel = service.getOne(email);
         return ResponseEntity.ok(userModel);
     }
     @PostMapping("/test/")
