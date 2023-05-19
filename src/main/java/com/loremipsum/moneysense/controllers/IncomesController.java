@@ -26,4 +26,10 @@ public class IncomesController {
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
 
+    @PatchMapping
+    public ResponseEntity updateValue(@RequestBody IncomeEntity entity,
+                                      @RequestParam Long id){
+        return ResponseEntity.ok(service.updateIncomes(entity, id));
+    }
+
 }

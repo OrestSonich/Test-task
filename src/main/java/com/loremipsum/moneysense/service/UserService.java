@@ -18,4 +18,11 @@ public class UserService {
                 .orElseThrow(() ->new UsernameNotFoundException("user not found"));
         return UserModel.toModel(user);
     }
+
+    public UserModel getOne(Long id) {
+        System.out.println("debug id " + id);
+        UserEntity user = repository.findById(id)
+                .orElseThrow(() ->new UsernameNotFoundException("user not found"));
+        return UserModel.toModel(user);
+    }
 }

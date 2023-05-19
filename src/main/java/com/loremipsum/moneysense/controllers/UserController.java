@@ -10,9 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/api/v1/")
 @AllArgsConstructor
@@ -23,14 +20,10 @@ public class UserController {
     @Autowired
     UserService service;
     @GetMapping("/user/")
-    public ResponseEntity getUser(){
-        List<UserModel> modelList = new ArrayList<>();
-        modelList.add(service.getOne("sonich.r@gmail.com"));
-        modelList.add(service.getOne("sonich1.r@gmail.com"));
-        modelList.add(service.getOne("sosat@gmail.com"));
-        modelList.add(service.getOne("so@gmail.com"));
-//        return ResponseEntity.ok(service.getOne("sosat@gmail.com"));
-        return ResponseEntity.ok(modelList);
+    public ResponseEntity getUser(@RequestParam Long id){
+         UserModel userModel = service.getOne((long) id);
+        System.out.println("Debug1");
+        return ResponseEntity.ok(userModel);
     }
     @PostMapping("/test/")
     public void setTest(@RequestBody UserModel model){

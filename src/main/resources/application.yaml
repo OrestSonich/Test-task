@@ -7,7 +7,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
 jwt:
     secret: 2A472D4B6150645367556B58703273357638792F423F4528482B4D6251655468
     expiration: 86400000

@@ -22,5 +22,6 @@ public class IncomeEntity {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserEntity owner;
+    private Date updatedAt;
 
 }
