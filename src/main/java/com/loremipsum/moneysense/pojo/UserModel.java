@@ -13,6 +13,7 @@ public class UserModel {
     private String lastName;
     private String email;
     private List<IncomesModel> incomes;
+    private List<CostsModel> costs;
 
     public static UserModel toModel(UserEntity entity){
         UserModel model = new UserModel();
@@ -21,6 +22,7 @@ public class UserModel {
         model.setLastName(entity.getLastName());
         model.setEmail(entity.getEmail());
         model.setIncomes(entity.getIncomes().stream().map(IncomesModel::toModel).collect(Collectors.toList()));
+        model.setCosts(entity.getCosts().stream().map(CostsModel::toModel).collect(Collectors.toList()));
         return model;
     }
 }

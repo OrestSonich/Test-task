@@ -54,6 +54,9 @@ public class UserEntity implements UserDetails {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
     private List<IncomeEntity> incomes;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    private List<CostsEntity> costs;
     @ToString.Include(name = "password")
     private String maskPassword(){
         return "*********";

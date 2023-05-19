@@ -27,7 +27,6 @@ public class IncomesService {
     }
 
     public void deleteIncomes(Long id) {
-
         incomesRepository.deleteById(id);
     }
 

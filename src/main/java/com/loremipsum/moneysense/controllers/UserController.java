@@ -7,22 +7,20 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/")
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserController {
     @Autowired
-    UserRepository repository;
+    private UserRepository repository;
     @Autowired
-    UserService service;
+    private UserService service;
     @GetMapping("/user/")
     public ResponseEntity getUser(@RequestParam Long id){
          UserModel userModel = service.getOne((long) id);
-        System.out.println("Debug1");
         return ResponseEntity.ok(userModel);
     }
     @PostMapping("/test/")
