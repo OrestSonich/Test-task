@@ -29,7 +29,7 @@ const AddModalForm = (props,{placeHolder}) => {
             if(value !== "") {
                 value = parseInt(value);
                 option.categories.filter(el => el.type === typeCat.type)[0].value += value
-                option.cashbacks.push({
+                option.cashbacks.unshift({
                     value:parseInt((value*0.15).toFixed(2)),
                     type:typeCat.type,
                     date: new Date().toLocaleString("uk",{
@@ -58,7 +58,7 @@ const AddModalForm = (props,{placeHolder}) => {
     }
     if(props.show) {
         return(
-            <div className="modal_form__add">
+            <div className="modal_form__add" style={{zIndex:3}}>
                 <h3>Добавити витрати: </h3>
                 <div className="hr"></div>
                 <form style={{display:"flex", flexDirection:"column", justifyContent:"space-between", width:"100%"}}>

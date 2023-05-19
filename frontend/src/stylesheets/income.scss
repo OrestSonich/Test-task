@@ -1,0 +1,29 @@
+.income {
+  canvas {
+    height: 500px;
+  }
+  &__button_wrapper {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+      margin-left: 10px;
+      width: 150px;
+      height: 35px;
+      border-radius: 15px;
+      border-style: solid;
+      border-color: #1A202C;
+      border-width: 1px;
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+    }
+  }
+}
+@media (max-width: 680px) {
+  .income {
+    width: 345px;
+    height: 500px;
+  }
+}

@@ -1,15 +1,26 @@
-import {Routes,Route} from "react-router-dom";
+import {Routes,Route,Navigate} from "react-router-dom";
+import {ChakraProvider} from "@chakra-ui/react";
 
 import ErrorPage from "./pages/404";
 import MainPage from "./pages/main";
 import Layout from "./components/layout";
-import Cashback from "./pages/cashback";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import RouteGuard from "./components/routeGuard";
 
-import {useState,createContext} from "react";
+import axios from "axios";
+import {useState,createContext,useEffect} from "react";
 
 import "./index.scss";
 export const StoreContext = createContext();
 
+export const setAuthToken = token => {
+    if (token) {
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+    else
+        delete axios.defaults.headers.common["Authorization"];
+}
 function App() {
     const [data, setData] = useState(
         {
@@ -96,19 +107,77 @@ function App() {
                     })
                 },
             ],
-            cashbacks:[]
+            income: [
+                {
+                    value: 500,
+                    date: "Січень"
+                },
+                {
+                    value: 500,
+                    date: "Лютий"
+                },
+                {
+                    value: 1500,
+                    date: "Березень"
+                },
+                {
+                    value: 500,
+                    date: "Квітень"
+                },
+                {
+                    value: 4750,
+                    date: "Травень"
+                },
+                {
+                    value: 12500,
+                    date: "Червень"
+                },
+                {
+                    value: 5400,
+                    date: "Липень"
+                },
+                {
+                    value: 506,
+                    date: "Серпень"
+                },
+                {
+                    value: 100,
+                    date: "Вересень"
+                },
+                {
+                    value: 400,
+                    date: "Жовтень"
+                },
+                {
+                    value: 500,
+                    date: "Листопад"
+                },
+                {
+                    value: 400,
+                    date: "Грудень"
+                },
+            ],
+            deposits: [],
+            credits: []
         }
     )
+    const token = localStorage.getItem("token");
 
+    if (token) {
+        setAuthToken(token);
+    }
       return (
           <StoreContext.Provider value={data}>
-              <Routes>
-                  <Route path="*" element={<ErrorPage/>}/>
-                  <Route path="/" element={<Layout/>}>
-                      <Route path="/" element={<MainPage/>}/>
-                      <Route path="/cashbacks" element={<Cashback/>}/>
-                  </Route>
-              </Routes>
+              <ChakraProvider>
+                  <Routes>
+                      <Route path="*" element={<ErrorPage/>}/>
+                      <Route path="/" element={<Layout/>}>
+                          <Route path="/" element={<RouteGuard component={<MainPage/>}/>}/>
+                      </Route>
+                      <Route path="/login" element={<Login/>}/>
+                      <Route path="/register" element={<Register/>}/>
+                  </Routes>
+              </ChakraProvider>
           </StoreContext.Provider>
       );
 }

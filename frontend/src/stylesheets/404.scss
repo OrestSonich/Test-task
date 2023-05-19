@@ -51,7 +51,7 @@
 }
 //Media
 
-@media (max-width: 450px) {
+@media (max-width: 680px) {
   .error {
     &__title {
       font-size: 40px;
@@ -64,6 +64,7 @@
       font-size: 24px;
     }
     &__logo{
+      display: none;
       left: 15vw;
       top: 70vh;
       height: 86px;

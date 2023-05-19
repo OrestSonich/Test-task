@@ -1,7 +1,6 @@
-import {useContext, useEffect, useState} from "react";
-import {GoChevronDown} from "react-icons/go"
+import {useContext,useState} from "react";
 import {StoreContext} from "../App";
-const NotificationModalForm = (props,{placeHolder}) => {
+const NotificationModalForm = (props) => {
     const option = useContext(StoreContext);
     const [inputValueDescr, setInputValueDescr] = useState('');
     const [inputValueMoney, setInputValueMoney] = useState('');
@@ -9,7 +8,7 @@ const NotificationModalForm = (props,{placeHolder}) => {
 
     const addHandler = (inputValueDescr,inputValueMoney,inputValueDate) => {
         if(inputValueDate !== "" && inputValueDescr !== "" && inputValueMoney !== "") {
-            option.notifications.push({
+            option.notifications.unshift({
                 descr: inputValueDescr,
                 value: inputValueMoney,
                 date: new Date(inputValueDate).toLocaleString("uk", {
@@ -23,7 +22,7 @@ const NotificationModalForm = (props,{placeHolder}) => {
     }
     if(props.show) {
         return(
-            <div className="modal_form__notification">
+            <div className="modal_form__notification" style={{zIndex:3}}>
                 <h3>Добавити нагадування: </h3>
                 <div className="hr"></div>
                 <form style={{display:"flex",flexDirection:"column"}}>

@@ -1,15 +1,29 @@
 import "../stylesheets/main.scss"
-import MonitorCircle from "../components/monitorCircle";
-import ListItemsCircle from "../components/listItemsCircle";
-import {useState, useContext} from "react";
+import {useState, useContext,useCallback} from "react";
 import {BsBellFill} from "react-icons/bs"
+import {loadFull} from "tsparticles"
+import Particles from "react-particles";
 
 import NotificationItem from "../components/notificationItem";
 import AddModalForm from "../components/addModalForm";
 import NotificationModalForm from "../components/notificationModalForm";
+import Credits from "./credits";
+import Income from "./income";
+import MonitorCircle from "../components/monitorCircle";
+import ListItemsCircle from "../components/listItemsCircle";
+
 import {StoreContext} from "../App";
 
+
+
 const MainPage = () => {
+
+    const options = {
+        preset: "triangles",
+    }
+    const customInit = useCallback(async engine => {
+        await loadFull(engine)
+    })
     const props = useContext(StoreContext)
 
     let allSum = props.categories.map(el => el.value).reduce((partialSum, a) => partialSum + a, 0)
@@ -23,9 +37,21 @@ const MainPage = () => {
             }
         ],
     }
+    const dataInc = {
+        labels: ['Січень', 'Лютий', 'Березень', 'Квітень', 'Травень', 'Червень', 'Липень',"Серпень","Вересень","Жовтень","Листопад","Грудень"],
+        datasets: [
+            {
+                label:"Дохід",
+                data: props.income.map(el => el.value),
+                fill:true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }
+        ]
+    }
 
     const [buttonState, setButtonState] = useState(false)
-    const [visible, setVisible] = useState(195)
+    const [visible, setVisible] = useState(215)
     const [addModalState, setAddModalState] = useState(false)
     const [notificationState,setNotificationState] = useState(false)
 
@@ -54,14 +80,14 @@ const MainPage = () => {
             )
         }else if(window.innerWidth > 550){
             return (
-                !buttonState? <h1 className="main__circle_section__priceText" style={{top:"37.3%", left:"18.4%"}}>{allSum}₴</h1>:<h1 className="main__circle_section__priceText" style={{top:"41.8%",left:"18.4%"}}>{allSum}₴</h1>
+                !buttonState? <h1 className="main__circle_section__priceText" style={{top:"37.3%", left:"18.4%"}}>{allSum}₴</h1>:<h1 className="main__circle_section__priceText" style={{top:"42.8%",left:"18.3%"}}>{allSum}₴</h1>
             )
         }
     }
 
     return(
-        <section className="main">
-            <div className="container">
+        <section className="main section" style={{zIndex: 2}}>
+            <div className="container" style={{zIndex:2}}>
                 <div className="main__circle_section">
                     <MonitorCircle props={data}/>
                     <TextPrice/>
@@ -71,7 +97,7 @@ const MainPage = () => {
                         <div className="main__circle_section__statistic__item_wrapper" style={{maxHeight: visible}}>
                             {props.categories.map((el) => <ListItemsCircle props={el} allSum={allSum} key={el.category}/>)}
                         </div>
-                        {allItems.length > 3? !buttonState? <Button value={635} buttonState={buttonState}/>:<Button value={195} buttonState={buttonState}/>:null}
+                        {allItems.length > 3? !buttonState? <Button value={735} buttonState={buttonState}/>:<Button value={210} buttonState={buttonState}/>:null}
                     </div>
                 </div>
                 <div className="main__wrapper">
@@ -93,7 +119,79 @@ const MainPage = () => {
                 </div>
                 <AddModalForm onClose={() => setAddModalState(false)} show={addModalState} placeHolder={"Виберіть категорію"}/>
                 <NotificationModalForm onClose={() => setNotificationState(false)} show={notificationState}/>
+                <Credits style={{background:"#fff"}}/>
+                <Income props={dataInc} />
             </div>
+            {/*<Particles init={customInit}*/}
+            {/*           style={{zIndex:-1}}*/}
+            {/*           options={{*/}
+            {/*               fpsLimit: 120,*/}
+            {/*               interactivity: {*/}
+            {/*                   events: {*/}
+            {/*                       onClick: {*/}
+            {/*                           enable: true,*/}
+            {/*                           mode: "push",*/}
+            {/*                       },*/}
+            {/*                       onHover: {*/}
+            {/*                           enable: true,*/}
+            {/*                           mode: "repulse",*/}
+            {/*                       },*/}
+            {/*                       resize: true,*/}
+            {/*                   },*/}
+            {/*                   modes: {*/}
+            {/*                       push: {*/}
+            {/*                           quantity: 4,*/}
+            {/*                       },*/}
+            {/*                       repulse: {*/}
+            {/*                           distance: 100,*/}
+            {/*                           duration: 0.4,*/}
+            {/*                       },*/}
+            {/*                   },*/}
+            {/*               },*/}
+            {/*               particles: {*/}
+            {/*                   color: {*/}
+            {/*                       value: "#666699",*/}
+            {/*                   },*/}
+            {/*                   links: {*/}
+            {/*                       color: "#666699",*/}
+            {/*                       distance: 100,*/}
+            {/*                       enable: true,*/}
+            {/*                       opacity: 1,*/}
+            {/*                       width: 1*/}
+            {/*                   },*/}
+            {/*                   collisions: {*/}
+            {/*                       enable: false,*/}
+            {/*                   },*/}
+            {/*                   move: {*/}
+            {/*                       directions: "none",*/}
+            {/*                       enable: true,*/}
+            {/*                       outModes: {*/}
+            {/*                           default: "bounce",*/}
+            {/*                       },*/}
+            {/*                       random: false,*/}
+            {/*                       speed: 1,*/}
+            {/*                       straight: false,*/}
+            {/*                   },*/}
+            {/*                   number: {*/}
+            {/*                       density: {*/}
+            {/*                           enable: true,*/}
+            {/*                           area: 800,*/}
+            {/*                       },*/}
+            {/*                       value: 120,*/}
+            {/*                   },*/}
+            {/*                   opacity: {*/}
+            {/*                       value: 0.5,*/}
+            {/*                   },*/}
+            {/*                   shape: {*/}
+            {/*                       type: "circle",*/}
+            {/*                   },*/}
+            {/*                   size: {*/}
+            {/*                       value: { min: 3, max: 10 },*/}
+            {/*                   },*/}
+            {/*               },*/}
+            {/*               detectRetina: true,*/}
+            {/*           }}*/}
+            {/*/>*/}
         </section>
     )
 }
