@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 public class CostsService {
@@ -21,7 +22,7 @@ public class CostsService {
     @Autowired
     private CostsRepository costsRepository;
     public CostsModel addCosts(CostsEntity costs, Long userId) {
-        costs.setCreatedAt(Date.valueOf(LocalDate.now()));
+        costs.setCreatedAt(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
         UserEntity user = userRepository.findById(userId).
                 orElseThrow(() ->new UsernameNotFoundException("user not found"));
         costs.setOwner(user);
@@ -42,7 +43,7 @@ public class CostsService {
         if (costs.getColor() != null)
             findEntity.setColor(costs.getColor());
 
-        findEntity.setUpdatedAt(Date.valueOf(LocalDate.now()));
+        findEntity.setUpdatedAt(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
         costsRepository.save(findEntity);
         return CostsModel.toModel(findEntity);
     }

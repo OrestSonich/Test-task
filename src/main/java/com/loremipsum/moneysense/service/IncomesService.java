@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 public class IncomesService {
@@ -20,7 +21,7 @@ public class IncomesService {
     @Autowired
     UserRepository userRepository;
     public IncomesModel addIncomes(IncomeEntity entity, Long userId){
-        entity.setDate(Date.valueOf(LocalDate.now()));
+        entity.setDate(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
         UserEntity user = userRepository.findById(userId).orElseThrow();
         entity.setOwner(user);
         return IncomesModel.toModel(incomesRepository.save(entity));
@@ -34,7 +35,7 @@ public class IncomesService {
         IncomeEntity income = incomesRepository.findById(id)
                 .orElseThrow(() ->new UsernameNotFoundException("income not found"));
         income.setValue(entity.getValue());
-        income.setUpdatedAt(Date.valueOf(LocalDate.now()));
+        income.setUpdatedAt(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
         incomesRepository.save(income);
         return IncomesModel.toModel(entity);
     }

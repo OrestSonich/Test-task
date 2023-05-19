@@ -11,6 +11,7 @@ public class CreditModel {
     private double receivedCash;
     private double refundCash;
     private Date openAt;
+    private Date updateAt;
     private Date closed;
     private double rate;
 

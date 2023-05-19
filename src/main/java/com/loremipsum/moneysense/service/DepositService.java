@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 
 @Service
 public class DepositService {
@@ -22,7 +23,7 @@ public class DepositService {
 
 
     public DepositModel addDeposit(DepositEntity entity, Long userId) {
-        entity.setOpenAt(Date.valueOf(LocalDate.now()));
+        entity.setOpenAt(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
         UserEntity user = userRepository.findById(userId).orElseThrow(); // todo throw
         entity.setOwner(user);
         depositRepository.save(entity);
@@ -39,8 +40,8 @@ public class DepositService {
             findEntity.setEnteredCash(entity.getEnteredCash());
         if (entity.getRate() != 0)
             findEntity.setRate(entity.getRate());
-
-        findEntity.setUpdatedAt(Date.valueOf(LocalDate.now()));
+        findEntity.setUpdatedAt(Date.valueOf(LocalDate.now(ZoneId.of("GMT+0300"))));
+        depositRepository.save(findEntity);
         return DepositModel.toModel(findEntity);
     }
 }
